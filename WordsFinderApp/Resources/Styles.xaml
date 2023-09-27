@@ -1,0 +1,114 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="BitmapImage_ExamBackground"
+             UriSource="/Resources/exam.png"/>
+    
+    <Style x:Key="Button_Style" TargetType="Button">
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+        <Setter Property="Padding" Value="10 5 10 5"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="Button_AddWordToList_Style" TargetType="Button"
+           BasedOn="{StaticResource Button_Style}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=TextBox_AddWordToList, Path=Text}"
+                         Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Style_Button_ClearWordsList" TargetType="Button"
+       BasedOn="{StaticResource Button_Style}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=ListBox_ForbiddenWords, Path=Items.Count}"
+                     Value="0">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Style_Button_StartMainAppProcess" 
+           BasedOn="{StaticResource Button_Style}"
+           TargetType="Button">
+    </Style>
+
+    <Style x:Key="Style_Button_PauseMainAppProcess" 
+       BasedOn="{StaticResource Button_Style}"
+       TargetType="Button">
+    </Style>
+
+    <Style x:Key="Style_Button_ChangePath"
+           BasedOn="{StaticResource Button_Style}"
+           TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding FlagMainFindUpdateOperationIsRun}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Label_Style" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ListBox_Style" TargetType="ListBox">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+    </Style>
+
+    <Style x:Key="Style_ProgressBar" TargetType="ProgressBar">
+        <Setter Property="Foreground" Value="{StaticResource Color_ProgressBar}"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    
+    <Style x:Key="Style_Separator" TargetType="Separator">
+        <Setter Property="Margin" Value="5 10 5 10"/>
+        <Setter Property="Background" Value="Black"/>
+    </Style>
+
+    <Style x:Key="TabItem_Style" TargetType="TabItem">
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+    </Style>
+
+    <Style x:Key="TextBlock_Style" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="TextBox_Style" TargetType="TextBox">
+        <Setter Property="FontSize" Value="{StaticResource FontSize_Common}"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Margin" Value="20 5 20 5"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="Style_TextBox_Path"
+           TargetType="TextBox"
+           BasedOn="{StaticResource TextBox_Style}">
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+    </Style>
+
+    
+
+    <Style x:Key="Style_TextBlock_InProgressBar" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlock_Style}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource Color_Foreground_TextBlock_InProgressBar}"/>
+    </Style>
+    
+</ResourceDictionary>

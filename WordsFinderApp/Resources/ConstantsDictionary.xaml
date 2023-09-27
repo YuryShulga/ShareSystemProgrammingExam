@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+                    xmlns:sys1="http://schemas.microsoft.com/netfx/2009/xaml/presentation">
+    <sys:String x:Key="MainWIndow_Title">Искатель слов</sys:String>
+    <sys:String x:Key="TabItem_Words_Title">Слова для поиска</sys:String>
+    <sys:String x:Key="TabItem_FindUpdateFiles_Title">Поиск файлов</sys:String>
+    <sys:String x:Key="TextBlock_WordsListDescription">Список слов для поиска в файлах</sys:String>
+    <sys:String x:Key="Label_AddWordToList">Добавить слово в список</sys:String>
+    <sys:String x:Key="Title_Button_AddWordToList">Добавить слово</sys:String>
+    <sys:String x:Key="Title_Button_LoadWordsFromFile">Загрузить слова из файла</sys:String>
+    <sys:String x:Key="Title_Error">Ошибка</sys:String>
+    <sys:String x:Key="Title_Button_ClearWordsList">Очистить список</sys:String>
+    <sys:String x:Key="Title_Button_StartMainAppProcessStart">Старт</sys:String>
+    <sys:String x:Key="Title_Button_StartMainAppProcessContinue">Продолжить</sys:String>
+    <sys:String x:Key="Title_Button_StopMainAppProcess">Стоп</sys:String>
+    <sys:String x:Key="Title_Button_PauseMainAppProcess">Пауза</sys:String>
+    <sys:String x:Key="Title_TextBlock_FileSeach">Поиск файлов -</sys:String>
+    <sys:String x:Key="Title_TextBlock_FilesCount_Pcs">штук</sys:String>
+    <sys:String x:Key="Title_TextBlock_SearchFilesWithForbidenWords">Поиск файлов с запрещенными словами</sys:String>
+    <sys:String x:Key="Title_TextBlock_FileCopy">Копирование файлов</sys:String>
+    <sys:String x:Key="Title_TextBlock_Path">Путь к папке в которую копировать файлы:</sys:String>
+    <sys:String x:Key="Title_Button_ChangePath">Изменить</sys:String>
+    <sys:String x:Key="Title_TextButton_UpdateWords">Замена слов на *******</sys:String>
+    <sys:String x:Key="Title_TextBlock_SearchPath">Путь по которому производить поиск:</sys:String>
+    <sys:String x:Key="Title_Button_SearchFilesInComputer">Искать во всем компьютере</sys:String>
+    <sys:String x:Key="Title_TabItem_ExamTask">Экзаменационное задание</sys:String>
+    
+
+    <sys1:SolidColorBrush x:Key="Color_ProgressBar" >#3aa9ef</sys1:SolidColorBrush>
+    <sys1:SolidColorBrush x:Key="Color_Foreground_TextBlock_InProgressBar" >#000000</sys1:SolidColorBrush>
+    
+    <sys:Double x:Key="FontSize_Common">16</sys:Double>
+
+</ResourceDictionary>

@@ -1,0 +1,207 @@
+﻿<Window x:Class="WordsFinderApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WordsFinderApp" 
+        xmlns:viewmodel="clr-namespace:WordsFinderApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AppViewModel}"
+        mc:Ignorable="d"
+        Title="{StaticResource MainWIndow_Title}" Height="620" Width="800">
+    
+    
+    <Grid>
+        <TabControl x:Name="TabControl1">
+            
+            <!--вкладка добавления запрещенных слов -->
+            <TabItem x:Name="TabItem_Words" 
+                     Header="{StaticResource TabItem_Words_Title}" 
+                     Style="{StaticResource TabItem_Style}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--ячейка слова-->
+                    <DockPanel LastChildFill="True" Grid.Column="0">
+                        <TextBlock x:Name="TextBlock_WordsListDescription"
+                                   DockPanel.Dock="Top"
+                                   Text="{StaticResource TextBlock_WordsListDescription}" TextWrapping="Wrap"
+                                   Style="{StaticResource TextBlock_Style}"/>
+                        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                            <Button x:Name="Button_ClearWordsList"
+                                    Style="{StaticResource Style_Button_ClearWordsList}"
+                                    Content="{StaticResource Title_Button_ClearWordsList}"
+                                    Click="Button_ClearWordsList_Click"/>
+                        </WrapPanel>
+                        <ListBox x:Name="ListBox_ForbiddenWords" 
+                                 Style="{StaticResource ListBox_Style}"
+                                  ItemsSource="{Binding WordsList }"/>
+                    </DockPanel>
+
+                    <!--ячейка добавление слов-->
+                    <StackPanel Grid.Column="1">
+                        <Label x:Name="Label_AddWordToList"
+                               Content="{StaticResource Label_AddWordToList}"
+                               Style="{StaticResource Label_Style}"/>
+                        <TextBox x:Name="TextBox_AddWordToList" 
+                                 Style="{StaticResource TextBox_Style}"/>
+
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="Button_AddWordToList"
+                                    Style="{StaticResource Button_AddWordToList_Style}"
+                                    Content="{StaticResource Title_Button_AddWordToList}"
+                                    Click="Button_AddWordToList_Click"/>
+                        </WrapPanel>
+                        <Separator Style="{StaticResource Style_Separator}"/>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="Button_LoadWordsFromFile"
+                                    Style="{StaticResource Button_Style}"
+                                    Content="{StaticResource Title_Button_LoadWordsFromFile}"
+                                    Click="Button_LoadWordsFromFile_Click"/>
+                        </WrapPanel>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <!--вкладка поиска файлов-->
+            <TabItem Name="TabItem_FindUpdateFiles" 
+                     Header="{StaticResource TabItem_FindUpdateFiles_Title}" 
+                     Style="{StaticResource TabItem_Style}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition  Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="Button_StartMainAppProcess"
+                                    Style="{StaticResource Style_Button_StartMainAppProcess}"
+                                    Click="Button_StartMainAppProcess_Click"/>
+                            <Button Name="Button_PauseMainAppProcess" 
+                                    Content="{StaticResource Title_Button_PauseMainAppProcess}"
+                                    Style="{StaticResource Style_Button_PauseMainAppProcess}"
+                                    Click="Button_PauseMainAppProcess_Click"/>
+                            <Button x:Name="Button_StopMainAppProcess"
+                                    Content="{StaticResource Title_Button_StopMainAppProcess}"
+                                    Style="{StaticResource Button_Style}"
+                                    Click="Button_StopMainAppProcess_Click"/>
+                        </WrapPanel>
+                        <Separator Style="{StaticResource Style_Separator}"/>
+                        <!--поиск файлов-->
+                        <WrapPanel>
+                            <TextBlock x:Name="TextBlock_FileSeach" 
+                                       Text="{StaticResource Title_TextBlock_FileSeach}"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBloick_FilesCount"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBloick_FilesCount_Pcs"
+                                       Style="{StaticResource TextBlock_Style}"
+                                       Text="{StaticResource Title_TextBlock_FilesCount_Pcs}"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock x:Name="TextBlock_SearchPath"
+                                       Text="{StaticResource Title_TextBlock_SearchPath}"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBox x:Name="TextBox_SearchPath"
+                                     Style="{StaticResource Style_TextBox_Path}"/>
+                            <Button x:Name="Button_ChangeSearchPath" 
+                                    Content="{StaticResource Title_Button_ChangePath}"
+                                    Style="{StaticResource Style_Button_ChangePath}"
+                                    Click="Button_ChangeSearchPath_Click"/>
+                        </WrapPanel>
+                        <Button x:Name="Button_SearchFilesInComputer"
+                                Content="{StaticResource Title_Button_SearchFilesInComputer}"
+                                Style="{StaticResource Style_Button_ChangePath}"
+                                Click="Button_SearchFilesInComputer_Click"/>
+                        <Separator Style="{StaticResource Style_Separator}"/>
+                        <!--поиск слов в файлах-->
+                        <TextBlock x:Name="TextBlock_SearchFilesWithForbidenWords"
+                                   Text="{StaticResource Title_TextBlock_SearchFilesWithForbidenWords}"
+                                   Style="{StaticResource TextBlock_Style}"/>
+                        <Grid>
+                            <ProgressBar x:Name="ProgressBar_SearchFilesWithForbidenWords"
+                                        Style="{StaticResource Style_ProgressBar}"/>
+                            <TextBlock  Text="{Binding ElementName=ProgressBar_SearchFilesWithForbidenWords, Path=Value}"
+                                        Style="{StaticResource Style_TextBlock_InProgressBar}"/>
+                        </Grid>
+                        <Separator Style="{StaticResource Style_Separator}"/>
+                        <!--копирование файлов с найденными словами-->
+                        <WrapPanel>
+                            <TextBlock x:Name="TextBlock_FileCopy" 
+                                       Text="{StaticResource Title_TextBlock_FileCopy}"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBlock_CopyFilesCount"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBlock_CopyFilesCount_Pcs"
+                                       Style="{StaticResource TextBlock_Style}"
+                                       Text="{StaticResource Title_TextBlock_FilesCount_Pcs}"/>
+                        </WrapPanel>
+                        <Grid>
+                            <ProgressBar x:Name="ProgressBar_CopyFiles"
+                                         Style="{StaticResource Style_ProgressBar}"/>
+                            <TextBlock Text="{Binding ElementName=ProgressBar_CopyFiles, Path=Value}"
+                                       Style="{StaticResource Style_TextBlock_InProgressBar}"/>
+                        </Grid>
+                        <WrapPanel>
+                            <TextBlock x:Name="TextBlock_Path"
+                                       Text="{StaticResource Title_TextBlock_Path}"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBox x:Name="TextBox_Path"
+                                     Style="{StaticResource Style_TextBox_Path}"/>
+                            <Button x:Name="Button_ChangePath" 
+                                    Content="{StaticResource Title_Button_ChangePath}"
+                                    Style="{StaticResource Style_Button_ChangePath}"
+                                    Click="Button_ChangePath_Click"/>
+                        </WrapPanel>
+                        <Separator Style="{StaticResource Style_Separator}"/>
+                        <!--секция замена слов на ****-->
+                        <WrapPanel>
+                            <TextBlock x:Name="TextButton_UpdateWords"
+                                       Text="{StaticResource Title_TextButton_UpdateWords}"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBlock_UpdateFilesCount"
+                                       Style="{StaticResource TextBlock_Style}"/>
+                            <TextBlock x:Name="TextBlock_UpdateFilesCount_Pcs"
+                                       Style="{StaticResource TextBlock_Style}"
+                                       Text="{StaticResource Title_TextBlock_FilesCount_Pcs}"/>
+                        </WrapPanel>
+                        <Grid>
+                            <ProgressBar x:Name="ProgressBar_UpdateFiles"
+                                         Style="{StaticResource Style_ProgressBar}"/>
+                            <TextBlock Text="{Binding ElementName=ProgressBar_UpdateFiles, Path=Value}"
+                                       Style="{StaticResource Style_TextBlock_InProgressBar}"/>
+                        </Grid>
+                        <!--отображение отчета-->
+                    </StackPanel>
+                    <DockPanel 
+                        Grid.Column="1"
+                        LastChildFill="True">
+                        <ListBox x:Name="ListBox_Report"
+                                 Style="{StaticResource ListBox_Style}"
+                                  ItemsSource="{Binding Report}"/>
+                        
+                        
+                    </DockPanel>
+                </Grid>
+                
+            </TabItem>
+            <!--вкладка :  экзаменационное задание-->
+            <TabItem x:Name="TabItem_ExamTask"
+                     Header="{StaticResource Title_TabItem_ExamTask}"
+                     Style="{StaticResource TabItem_Style}">
+                <Grid >
+                    <Image x:Name="Image_ExamBackground"
+                           Stretch="Fill"
+                           Source="{StaticResource BitmapImage_ExamBackground}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
